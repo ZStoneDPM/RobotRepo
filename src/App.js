@@ -8,7 +8,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      monsters: [],
+      robots: [],
       searchField: "",
     };
 
@@ -17,8 +17,8 @@ class App extends Component {
   componentDidMount() {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
-      .then((users) => this.setState({ monsters: users }))
-      // .then((monsters) => console.log(this.state.monsters))
+      .then((users) => this.setState({ robots: users }))
+      // .then((robots) => console.log(this.state.robots))
       .catch((error) => console.log("Cannot connect to fetch url!"));
   }
   
@@ -27,9 +27,9 @@ class App extends Component {
   }
 
   render() {
-    const { monsters, searchField } = this.state;
-    const filteredMonsters = monsters.filter((monster) =>
-      monster.name.toLowerCase().includes(searchField.toLowerCase())
+    const { robots, searchField } = this.state;
+    const filteredRobots = robots.filter((robot) =>
+      robot.name.toLowerCase().includes(searchField.toLowerCase())
     );
 
     return (
@@ -39,7 +39,7 @@ class App extends Component {
           placeholder="search robots.."
           handleChange={this.handleChange}
         />
-        <CardList monsters={filteredMonsters} />
+        <CardList robots={filteredRobots} />
       </div>
     );
   }
